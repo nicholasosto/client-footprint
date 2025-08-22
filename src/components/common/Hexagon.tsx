@@ -10,9 +10,10 @@ interface HexagonProps {
   title?: string;
   stateKey?: HC_STATE_KEY;
   styleOverrides?: Partial<HoneycombStateMeta>;
+  titleFontSize?: number;
 }
 
-const Hexagon: React.FC<HexagonProps> = ({ cx, cy, size, title, stateKey, styleOverrides }) => {
+const Hexagon: React.FC<HexagonProps> = ({ cx, cy, size, title, stateKey, styleOverrides, titleFontSize }) => {
   // Resolve visual style from catalog when provided
   const stateMeta = stateKey ? getHoneycombStateMeta(stateKey) : undefined;
   const backgroundColor = styleOverrides?.backgroundColor ?? stateMeta?.backgroundColor ?? 'white';
@@ -32,19 +33,19 @@ const Hexagon: React.FC<HexagonProps> = ({ cx, cy, size, title, stateKey, styleO
   return (
     <g>
       <polygon points={points} fill={backgroundColor} stroke={borderColor} strokeWidth="2" />
-      {title && (
-        <text
-          x={cx}
-          y={cy - hexHeight / 3}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fill={textColor}
-          fontSize={size / 6}
-          style={{ pointerEvents: 'none' }}
-        >
-          {title}
-        </text>
-      )}
+          {title && (
+            <text
+              x={cx}
+              y={cy - hexHeight / 3}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill={textColor}
+              fontSize={titleFontSize ?? size / 6}
+              style={{ pointerEvents: 'none' }}
+            >
+              {title}
+            </text>
+          )}
     </g>
   );
 };

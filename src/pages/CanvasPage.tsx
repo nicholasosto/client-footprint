@@ -59,6 +59,7 @@ const CanvasPage: React.FC = () => {
                 innerCellSpacing={innerCellSpacing}
                 innerGroupOffset={innerGroupOffset}
                 title={title}
+                titleFontSize={30}
                 // forward demo state (falls back to NOT_ENGAGED)
                 stateKey={defaultState}
               />

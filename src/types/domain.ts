@@ -26,6 +26,9 @@ export enum EngagementState {
   ACTIVELY_PURSUING = 'ACTIVELY_PURSUING'
 }
 
+// Cell-level visual state keys (used for inner cells separate from engagement states)
+export type CellStateKey = 'CLIENT_AREA' | 'NON_CLIENT_AREA' | 'ENGAGED_CLIENT_AREA';
+
 export interface CellVisualProperties {
   borderColor: string;
   backgroundColor: string;
@@ -40,6 +43,8 @@ export interface Cell {
   displayName: string;
   isActive: boolean;
   state: EngagementState;
+  // Optional visual state for the inner cell (catalog-driven)
+  cellState?: CellStateKey;
   visualProperties: CellVisualProperties;
 }
 

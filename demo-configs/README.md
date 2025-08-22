@@ -3,7 +3,7 @@ Demo configs for the Honeycomb visualization
 Files included:
 
 - `honeycomb-state-catalog.json` / `honeycomb-state-catalog.yaml`:
-  A small example catalog mapping the three HC_STATE_KEY values (ENGAGED, NOT_ENGAGED, ACTIVE_PERSUAL) to visual metadata (backgroundColor, textColor, borderColor, label).
+  A small example catalog mapping the three HC_STATE_KEY values (CLIENT_AREA, NON_CLIENT_AREA, ENGAGED_CLIENT_AREA) to visual metadata (backgroundColor, textColor, borderColor, label).
 
 - `sample-cluster-states.json`:
   Shows a sample mapping of cluster IDs (like `r0-h0`) to a `HC_STATE_KEY`. Use this to quickly apply different states to clusters in the Canvas demo.

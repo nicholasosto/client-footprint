@@ -1,7 +1,7 @@
 import React from 'react';
 import { Cell, EngagementState } from '../../types/domain';
 import { HexMath } from '../../utils/hexMath';
-import { VISUAL_CONSTANTS } from '../../utils/constants';
+import { VISUAL_CONSTANTS, getCellStateColor } from '../../utils/constants';
 
 interface HexCellProps {
   cell: Cell;
@@ -65,7 +65,10 @@ const HexCellComponent: React.FC<HexCellProps> = ({
     >
       <path
         d={hexPath}
-        fill={cell.visualProperties.backgroundColor || getStateColor(cell.state)}
+        fill={
+          // Priority: explicit visualProperties.backgroundColor -> cell.cellState catalog color -> engagement state color
+          cell.visualProperties.backgroundColor || getCellStateColor(cell.cellState) || getStateColor(cell.state)
+        }
         stroke={getBorderColor()}
         strokeWidth={getBorderWidth()}
         opacity={getOpacity()}

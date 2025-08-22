@@ -43,7 +43,8 @@ export interface EngagementStatusCatalogEntry extends CatalogMetadata {
 }
 
 // Honeycomb visual state keys for large cluster hexagons
-export type HC_STATE_KEY = 'ENGAGED' | 'NOT_ENGAGED' | 'ACTIVE_PERSUAL';
+
+export type HC_STATE_KEY = 'CLIENT_AREA' | 'NON_CLIENT_AREA' | 'ENGAGED_CLIENT_AREA';
 
 // Visual metadata for a honeycomb state
 export interface HoneycombStateMeta {
@@ -57,6 +58,20 @@ export interface HoneycombStateMeta {
 
 // Catalog type for honeycomb visual states (indexed by HC_STATE_KEY)
 export type HoneycombStateCatalog = Record<HC_STATE_KEY, HoneycombStateMeta>;
+
+// Cell-level state keys and metadata (for inner cells)
+export type CELL_STATE_KEY = 'CLIENT_AREA' | 'NON_CLIENT_AREA' | 'ENGAGED_CLIENT_AREA';
+
+export interface CellStateMeta {
+  key: CELL_STATE_KEY;
+  label: string;
+  backgroundColor: string;
+  textColor?: string;
+  borderColor?: string;
+  isActive?: boolean;
+}
+
+export type CellStateCatalog = Record<CELL_STATE_KEY, CellStateMeta>;
 
 // Template mapping data structures
 export interface TemplateMapping {

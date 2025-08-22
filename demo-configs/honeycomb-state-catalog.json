@@ -1,23 +1,23 @@
 {
-  "ENGAGED": {
-    "key": "ENGAGED",
-    "label": "Engaged",
+  "CLIENT_AREA": {
+    "key": "CLIENT_AREA",
+    "label": "Client Area",
     "backgroundColor": "#2E7D32",
     "textColor": "#FFFFFF",
     "borderColor": "#1B5E20",
     "isActive": true
   },
-  "NOT_ENGAGED": {
-    "key": "NOT_ENGAGED",
-    "label": "Not Engaged",
+  "NON_CLIENT_AREA": {
+    "key": "NON_CLIENT_AREA",
+    "label": "Non Client Area",
     "backgroundColor": "#E0E0E0",
     "textColor": "#000000",
     "borderColor": "#9E9E9E",
     "isActive": true
   },
-  "ACTIVE_PERSUAL": {
-    "key": "ACTIVE_PERSUAL",
-    "label": "Actively Pursuing",
+  "ENGAGED_CLIENT_AREA": {
+    "key": "ENGAGED_CLIENT_AREA",
+    "label": "Engaged Client Area",
     "backgroundColor": "#0277BD",
     "textColor": "#FFFFFF",
     "borderColor": "#01579B",

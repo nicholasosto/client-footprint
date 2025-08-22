@@ -134,6 +134,48 @@ export const ENGAGEMENT_STATE_CONFIG = {
 } as const;
 
 /**
+ * Cell-level state configuration (inner cell catalog)
+ */
+export const CELL_STATE_CONFIG = {
+  CLIENT_AREA: {
+    displayName: 'Client Area',
+    backgroundColor: '#51b1d6ff',
+    textColor: '#ffffffff',
+    borderColor: '#0a15aaff',
+    priority: 1
+  },
+  NON_CLIENT_AREA: {
+    displayName: 'Non Client Area',
+    backgroundColor: '#E0E0E0',
+    textColor: '#1b34bdff',
+    borderColor: '#002f5aff',
+    priority: 0
+  },
+  ENGAGED_CLIENT_AREA: {
+    displayName: 'Engaged Client Area',
+    backgroundColor: '#266294ff',
+    textColor: '#FFFFFF',
+    borderColor: '#1B5E20',
+    priority: 2
+  }
+} as const;
+
+export const getCellStateColor = (key?: string): string => {
+  if (!key) return VISUAL_CONSTANTS.COLORS.NOT_ENGAGED;
+  // Type narrowing by checking known keys
+  switch (key) {
+    case 'CLIENT_AREA':
+      return CELL_STATE_CONFIG.CLIENT_AREA.backgroundColor;
+    case 'NON_CLIENT_AREA':
+      return CELL_STATE_CONFIG.NON_CLIENT_AREA.backgroundColor;
+    case 'ENGAGED_CLIENT_AREA':
+      return CELL_STATE_CONFIG.ENGAGED_CLIENT_AREA.backgroundColor;
+    default:
+      return VISUAL_CONSTANTS.COLORS.NOT_ENGAGED;
+  }
+};
+
+/**
  * Default master template configuration
  */
 // Ten staggered clusters (H1..H10), arranged 3-4-3 with axial spacing of 6 and staggered by 3
