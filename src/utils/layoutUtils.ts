@@ -3,6 +3,7 @@ interface HexagonConfig {
   gap: number;
   rowGap: number;
   canvasWidth: number;
+  canvasHeight: number;
   layout: number[];
 }
 
@@ -13,7 +14,7 @@ interface HexagonPosition {
 }
 
 export const generateHexagonLayout = (config: HexagonConfig): HexagonPosition[] => {
-  const { hexSize, gap, rowGap, canvasWidth, layout } = config;
+  const { hexSize, gap, rowGap, canvasWidth, canvasHeight, layout } = config;
   const hexWidth = 2 * hexSize;
   const hexHeight = Math.sqrt(3) * hexSize;
   const positions: HexagonPosition[] = [];
@@ -54,6 +55,37 @@ export const generateHexagonLayout = (config: HexagonConfig): HexagonPosition[] 
     const delta = targetCenter - groupCenter;
     if (Math.abs(delta) > 0.5) {
       for (const p of positions) p.cx += delta;
+    }
+  }
+
+  // vertical centering + safety margin to avoid clipping
+  if (positions.length > 0) {
+    const ys = positions.map(p => p.cy);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    const groupCenterY = (minY + maxY) / 2;
+    const targetCenterY = canvasWidth ? (canvasWidth * 0) : 0; // placeholder to satisfy TS (unused)
+
+    // preferred target: vertically center in canvas, but keep margin
+    const margin = Math.max(24, Math.round(hexHeight * 0.25));
+    const canvasTop = margin;
+    const canvasBottom = canvasHeight - margin;
+
+    // compute delta to center group vertically
+    let deltaY = (canvasHeight / 2) - groupCenterY;
+
+    // check top/bottom after proposed shift and clamp if necessary
+    const newMinY = minY + deltaY;
+    const newMaxY = maxY + deltaY;
+    if (newMinY < canvasTop) {
+      deltaY += (canvasTop - newMinY);
+    }
+    if (newMaxY > canvasBottom) {
+      deltaY -= (newMaxY - canvasBottom);
+    }
+
+    if (Math.abs(deltaY) > 0.5) {
+      for (const p of positions) p.cy += deltaY;
     }
   }
 

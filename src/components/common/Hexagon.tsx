@@ -1,4 +1,6 @@
 import React from 'react';
+import { HC_STATE_KEY, HoneycombStateMeta } from '../../types/catalog';
+import { getHoneycombStateMeta } from '../../services/honeycombCatalog';
 
 interface HexagonProps {
   id: string;
@@ -6,9 +8,16 @@ interface HexagonProps {
   cy: number;
   size: number;
   title?: string;
+  stateKey?: HC_STATE_KEY;
+  styleOverrides?: Partial<HoneycombStateMeta>;
 }
 
-const Hexagon: React.FC<HexagonProps> = ({ cx, cy, size, title }) => {
+const Hexagon: React.FC<HexagonProps> = ({ cx, cy, size, title, stateKey, styleOverrides }) => {
+  // Resolve visual style from catalog when provided
+  const stateMeta = stateKey ? getHoneycombStateMeta(stateKey) : undefined;
+  const backgroundColor = styleOverrides?.backgroundColor ?? stateMeta?.backgroundColor ?? 'white';
+  const textColor = styleOverrides?.textColor ?? stateMeta?.textColor ?? 'black';
+  const borderColor = styleOverrides?.borderColor ?? stateMeta?.borderColor ?? 'black';
   const points = [
     [cx + size, cy],
     [cx + size / 2, cy + size * Math.sqrt(3) / 2],
@@ -22,14 +31,14 @@ const Hexagon: React.FC<HexagonProps> = ({ cx, cy, size, title }) => {
 
   return (
     <g>
-      <polygon points={points} fill="white" stroke="black" strokeWidth="2" />
+      <polygon points={points} fill={backgroundColor} stroke={borderColor} strokeWidth="2" />
       {title && (
         <text
           x={cx}
           y={cy - hexHeight / 3}
           textAnchor="middle"
           dominantBaseline="middle"
-          fill="black"
+          fill={textColor}
           fontSize={size / 6}
           style={{ pointerEvents: 'none' }}
         >

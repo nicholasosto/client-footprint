@@ -11,6 +11,7 @@ interface HexClusterProps {
   title?: string;
   innerCellSpacing?: number; // multiplier (1 = tight fit, >1 = more space)
   innerGroupOffset?: { x?: number; y?: number };
+  stateKey?: import('../../types/catalog').HC_STATE_KEY;
 }
 
 const axialToPixel = (q: number, r: number, size: number) => {
@@ -33,11 +34,11 @@ const normalizeSlot = (slot: { q: number; r: number; s?: number }) => {
   return { q, r, s };
 };
 
-const HexCluster: React.FC<HexClusterProps> = ({ id, cx, cy, size, innerCellSize, title, innerCellSpacing = 1, innerGroupOffset }) => {
+const HexCluster: React.FC<HexClusterProps> = ({ id, cx, cy, size, innerCellSize, title, innerCellSpacing = 1, innerGroupOffset, stateKey }) => {
   return (
     <g>
       {/* Render the large container hexagon */}
-      <Hexagon id={`${id}-cluster`} cx={cx} cy={cy} size={size} title={title} />
+      <Hexagon id={`${id}-cluster`} cx={cx} cy={cy} size={size} title={title} stateKey={stateKey ?? 'NOT_ENGAGED'} />
 
       {/* Render the inner cells */}
       {INNER_CELL_SLOT_OFFSETS.map((offset, index) => {

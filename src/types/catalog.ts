@@ -42,6 +42,22 @@ export interface EngagementStatusCatalogEntry extends CatalogMetadata {
   isActive: boolean;
 }
 
+// Honeycomb visual state keys for large cluster hexagons
+export type HC_STATE_KEY = 'ENGAGED' | 'NOT_ENGAGED' | 'ACTIVE_PERSUAL';
+
+// Visual metadata for a honeycomb state
+export interface HoneycombStateMeta {
+  key: HC_STATE_KEY;
+  label: string; // display label e.g., 'Engaged'
+  backgroundColor: string; // fill color for the big hex
+  textColor: string; // color for any title/text inside the big hex
+  borderColor?: string; // stroke color for the hex border
+  isActive?: boolean;
+}
+
+// Catalog type for honeycomb visual states (indexed by HC_STATE_KEY)
+export type HoneycombStateCatalog = Record<HC_STATE_KEY, HoneycombStateMeta>;
+
 // Template mapping data structures
 export interface TemplateMapping {
   clientId: string;

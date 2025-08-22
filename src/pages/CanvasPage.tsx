@@ -16,7 +16,8 @@ const CanvasPage: React.FC = () => {
     hexSize: clusterSize,
     gap: 250,
     rowGap: -160,
-    canvasWidth: canvasWidth,
+  canvasWidth: canvasWidth,
+  canvasHeight: canvasHeight,
     layout: [2, 3, 2, 3], // Defines the number of hexagons in each row
   };
 
