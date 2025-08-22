@@ -2,6 +2,9 @@ import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import HexCluster from '../components/common/HexCluster';
 import { generateHexagonLayout } from '../utils/layoutUtils';
+// Load demo cluster state mapping (created in demo-configs/sample-cluster-states.json)
+import clusterStatesRaw from '../../demo-configs/sample-cluster-states.json';
+const clusterStates: Record<string, string> = clusterStatesRaw as any;
 
 const CanvasPage: React.FC = () => {
   const canvasWidth = 2000;
@@ -49,6 +52,8 @@ const CanvasPage: React.FC = () => {
               innerCellSpacing={innerCellSpacing}
               innerGroupOffset={innerGroupOffset}
               title={`Cluster ${index + 1}`}
+              // forward demo state (falls back to NOT_ENGAGED)
+              stateKey={(clusterStates[cluster.id] as import('../types/catalog').HC_STATE_KEY) ?? 'NOT_ENGAGED'}
             />
           ))}
         </svg>

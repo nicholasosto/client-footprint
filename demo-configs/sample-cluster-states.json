@@ -1,0 +1,12 @@
+{
+  "r0-h0": "ENGAGED",
+  "r0-h1": "ACTIVE_PERSUAL",
+  "r1-h0": "NOT_ENGAGED",
+  "r1-h1": "ENGAGED",
+  "r1-h2": "ACTIVE_PERSUAL",
+  "r2-h0": "NOT_ENGAGED",
+  "r2-h1": "NOT_ENGAGED",
+  "r3-h0": "ENGAGED",
+  "r3-h1": "ACTIVE_PERSUAL",
+  "r3-h2": "NOT_ENGAGED"
+}
