@@ -44,5 +44,18 @@ export const generateHexagonLayout = (config: HexagonConfig): HexagonPosition[] 
     lastY = y + hexHeight * 0.866 + rowGap;
   });
 
+  // center the whole group horizontally: compute bounding box and shift to canvas center
+  if (positions.length > 0) {
+    const xs = positions.map(p => p.cx);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const groupCenter = (minX + maxX) / 2;
+    const targetCenter = canvasWidth / 2;
+    const delta = targetCenter - groupCenter;
+    if (Math.abs(delta) > 0.5) {
+      for (const p of positions) p.cx += delta;
+    }
+  }
+
   return positions;
 };

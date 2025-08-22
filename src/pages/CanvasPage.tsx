@@ -7,7 +7,10 @@ const CanvasPage: React.FC = () => {
   const canvasWidth = 2000;
   const canvasHeight = 1200;
   const clusterSize = 250;
-  const innerCellSize = 40;
+  const innerCellSize = 58; // increased 20% from 40 -> 48
+  const innerCellSpacing = 1.0; // Increase >1 to spread inner cells apart, <1 to tighten
+  // Global inner-group offset: tweak this to move all inner-cell patterns inside their clusters
+  const innerGroupOffset = { x: 88, y: 32 };
 
   const layoutConfig = {
     hexSize: clusterSize,
@@ -42,6 +45,8 @@ const CanvasPage: React.FC = () => {
               cy={cluster.cy}
               size={clusterSize}
               innerCellSize={innerCellSize}
+              innerCellSpacing={innerCellSpacing}
+              innerGroupOffset={innerGroupOffset}
               title={`Cluster ${index + 1}`}
             />
           ))}
