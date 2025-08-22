@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Development Server",
+			"type": "shell",
+			"command": "npm run dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install and Start Dev Server",
+			"type": "shell",
+			"command": "npm install --legacy-peer-deps ; npm run dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Reinstall and Start Dev Server",
+			"type": "shell",
+			"command": "npm install --legacy-peer-deps ; npm run dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Install Vite + MUI and Start Dev Server",
+			"type": "shell",
+			"command": "npm install --legacy-peer-deps ; npm install -D vite @vitejs/plugin-react ; npm install @mui/material @emotion/react @emotion/styled ; npm run dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}
