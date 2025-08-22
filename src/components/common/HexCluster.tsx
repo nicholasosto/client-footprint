@@ -12,8 +12,9 @@ interface HexClusterProps {
 }
 
 const axialToPixel = (q: number, r: number, size: number) => {
-  const x = size * (3 / 2 * q);
-  const y = size * (Math.sqrt(3) / 2 * q + Math.sqrt(3) * r);
+  // Standard axial to pixel conversion for pointy-top hexes
+  const x = (3 / 2) * size * q;
+  const y = (Math.sqrt(3) * size * (r + q / 2));
   return { x, y };
 };
 
@@ -25,7 +26,9 @@ const HexCluster: React.FC<HexClusterProps> = ({ id, cx, cy, size, innerCellSize
 
       {/* Render the inner cells */}
       {INNER_CELL_SLOT_OFFSETS.map((offset, index) => {
-        const { x, y } = axialToPixel(offset.q, offset.r, innerCellSize * 1.15);
+        // small downward shift to avoid colliding with cluster title
+        const titleClearance = Math.max(6, Math.round(innerCellSize * 0.25));
+        const { x, y } = axialToPixel(offset.q, offset.r, innerCellSize);
         const cellId = `${id}-c${index + 1}`;
         
         return (
@@ -33,7 +36,7 @@ const HexCluster: React.FC<HexClusterProps> = ({ id, cx, cy, size, innerCellSize
             key={cellId}
             id={cellId}
             cx={cx + x}
-            cy={cy + y}
+            cy={cy + y + titleClearance}
             size={innerCellSize}
             title={`C${index + 1}`} // Example title
           />

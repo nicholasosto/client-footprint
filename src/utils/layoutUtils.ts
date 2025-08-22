@@ -17,13 +17,18 @@ export const generateHexagonLayout = (config: HexagonConfig): HexagonPosition[] 
   const hexWidth = 2 * hexSize;
   const hexHeight = Math.sqrt(3) * hexSize;
   const positions: HexagonPosition[] = [];
+  // Compute the widest row width so we can center all rows relative to it
+  const rowWidths = layout.map((hexCount) => (hexCount * hexWidth) + (Math.max(0, hexCount - 1) * gap));
+  const widestRowWidth = Math.max(...rowWidths);
 
-  let lastY = hexHeight / 2 + 20; // Initial top padding
+  const topPadding = Math.max(80, Math.round(hexHeight / 3)); // increase top padding to avoid header overlap
+  let lastY = hexHeight / 2 + topPadding;
 
   layout.forEach((hexCount, rowIndex) => {
-    const totalContentWidth = (hexCount * hexWidth) + (Math.max(0, hexCount - 1) * gap);
-    const startX = (canvasWidth - totalContentWidth) / 2;
-    
+    const totalContentWidth = rowWidths[rowIndex];
+    // center this row relative to the widest row
+    const startX = ((canvasWidth - widestRowWidth) / 2) + ((widestRowWidth - totalContentWidth) / 2);
+
     const y = lastY;
 
     for (let i = 0; i < hexCount; i++) {
@@ -35,6 +40,7 @@ export const generateHexagonLayout = (config: HexagonConfig): HexagonPosition[] 
       });
     }
 
+    // vertical step between rows; 0.866 approximates sqrt(3)/2 spacing for hex grids
     lastY = y + hexHeight * 0.866 + rowGap;
   });
 
