@@ -5,6 +5,9 @@ import { generateHexagonLayout } from '../utils/layoutUtils';
 // Load demo cluster state mapping (created in demo-configs/sample-cluster-states.json)
 import clusterStatesRaw from '../../demo-configs/sample-cluster-states.json';
 const clusterStates: Record<string, string> = clusterStatesRaw as any;
+import clusterTitleMapRaw from '../../demo-configs/cluster-title-map.json';
+type ClusterTitleEntry = { label: string; defaultState?: string };
+const clusterTitleMap: Record<string, ClusterTitleEntry> = clusterTitleMapRaw as any;
 
 const CanvasPage: React.FC = () => {
   const canvasWidth = 2000;
@@ -41,21 +44,26 @@ const CanvasPage: React.FC = () => {
         }}
       >
         <svg width={canvasWidth} height={canvasHeight} style={{ position: 'absolute', top: 0, left: 0 }}>
-          {clusterPositions.map((cluster, index) => (
-            <HexCluster
-              key={cluster.id}
-              id={cluster.id}
-              cx={cluster.cx}
-              cy={cluster.cy}
-              size={clusterSize}
-              innerCellSize={innerCellSize}
-              innerCellSpacing={innerCellSpacing}
-              innerGroupOffset={innerGroupOffset}
-              title={`Cluster ${index + 1}`}
-              // forward demo state (falls back to NOT_ENGAGED)
-              stateKey={(clusterStates[cluster.id] as import('../types/catalog').HC_STATE_KEY) ?? 'NOT_ENGAGED'}
-            />
-          ))}
+          {clusterPositions.map((cluster, index) => {
+            const titleEntry = clusterTitleMap[cluster.id];
+            const title = titleEntry?.label ?? `Cluster ${index + 1}`;
+            const defaultState = (titleEntry?.defaultState as import('../types/catalog').HC_STATE_KEY) ?? (clusterStates[cluster.id] as import('../types/catalog').HC_STATE_KEY) ?? 'NOT_ENGAGED';
+            return (
+              <HexCluster
+                key={cluster.id}
+                id={cluster.id}
+                cx={cluster.cx}
+                cy={cluster.cy}
+                size={clusterSize}
+                innerCellSize={innerCellSize}
+                innerCellSpacing={innerCellSpacing}
+                innerGroupOffset={innerGroupOffset}
+                title={title}
+                // forward demo state (falls back to NOT_ENGAGED)
+                stateKey={defaultState}
+              />
+            );
+          })}
         </svg>
       </Box>
     </Container>

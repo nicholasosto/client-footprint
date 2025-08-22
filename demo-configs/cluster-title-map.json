@@ -1,0 +1,12 @@
+{
+  "r0-h0": { "label": "Commercial Strategy", "defaultState": "ENGAGED" },
+  "r0-h1": { "label": "Data & Analytics", "defaultState": "ACTIVE_PERSUAL" },
+  "r1-h0": { "label": "R&D Systems", "defaultState": "NOT_ENGAGED" },
+  "r1-h1": { "label": "Laboratory IT", "defaultState": "ENGAGED" },
+  "r1-h2": { "label": "Clinical Systems", "defaultState": "ACTIVE_PERSUAL" },
+  "r2-h0": { "label": "Quality", "defaultState": "NOT_ENGAGED" },
+  "r2-h1": { "label": "Manufacturing", "defaultState": "NOT_ENGAGED" },
+  "r3-h0": { "label": "Regulatory", "defaultState": "ENGAGED" },
+  "r3-h1": { "label": "Supply Chain", "defaultState": "ACTIVE_PERSUAL" },
+  "r3-h2": { "label": "Commercial Ops", "defaultState": "NOT_ENGAGED" }
+}
