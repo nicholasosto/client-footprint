@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { ClientFootprintPage } from './pages/ClientFootprintPage';
 import { AdminPanel } from './pages/AdminPanel';
+import CanvasPage from './pages/CanvasPage';
 import { ThemeProvider, createTheme, CssBaseline, AppBar, Toolbar, Typography, Container, Box, Button, Stack, Divider } from '@mui/material';
 import { EngagementLegend } from './components/common/EngagementLegend';
 import './App.css';
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                 <Button component={RouterLink} to="/client/roche" color="inherit">Roche</Button>
                 <Button component={RouterLink} to="/client/gsk" color="inherit">GSK</Button>
                 <Button component={RouterLink} to="/admin" color="inherit">Admin</Button>
+                <Button component={RouterLink} to="/canvas" color="inherit">Canvas</Button>
               </Stack>
             </Toolbar>
           </AppBar>
@@ -41,6 +43,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/client/:clientId" element={<ClientFootprintPage />} />
               <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/canvas" element={<CanvasPage />} />
               <Route path="/" element={<Navigate to="/client/regeneron" replace />} />
             </Routes>
           </Container>

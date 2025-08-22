@@ -47,11 +47,7 @@ export const HoneycombVisualization: React.FC<HoneycombVisualizationProps> = ({
     }
 
     // Calculate bounds for inner cells
-    const cellPositions = enrichedCells.map(cell => {
-      const x = HexMath.HEX_SPACING * (3/2 * cell.position.q);
-      const y = HexMath.HEX_SPACING * (Math.sqrt(3)/2 * cell.position.q + Math.sqrt(3) * cell.position.r);
-      return { x, y };
-    });
+    const cellPositions = enrichedCells.map(cell => HexMath.axialToPixel(cell.position));
 
     // Include outer cluster hexes in bounds
     const clusterBigSize = HexMath.HEX_SIZE * HexMath.CLUSTER_SCALE;

@@ -13,8 +13,8 @@ export class HexMath {
    * Convert axial coordinates to pixel coordinates
    */
   static axialToPixel(hex: HexCoordinate): { x: number; y: number } {
-    const x = this.HEX_SPACING * (3/2 * hex.q);
-    const y = this.HEX_SPACING * (Math.sqrt(3)/2 * hex.q + Math.sqrt(3) * hex.r);
+    const x = this.HEX_SPACING * (Math.sqrt(3) * hex.q + Math.sqrt(3)/2 * hex.r);
+    const y = this.HEX_SPACING * (3/2 * hex.r);
     return { x, y };
   }
 
@@ -24,7 +24,7 @@ export class HexMath {
   static generateHexPath(center: { x: number; y: number }, size: number): string {
     const points: string[] = [];
     for (let i = 0; i < 6; i++) {
-      const angle = (Math.PI / 3) * i;
+      const angle = (Math.PI / 3) * i + Math.PI / 6; // Add 30 degrees offset for pointy top
       const x = center.x + size * Math.cos(angle);
       const y = center.y + size * Math.sin(angle);
       points.push(`${x},${y}`);

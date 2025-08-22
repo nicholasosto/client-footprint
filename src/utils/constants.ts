@@ -15,7 +15,7 @@ export const APP_CONFIG = {
  * Visual styling constants
  */
 export const VISUAL_CONSTANTS = {
-  HEX_SIZE: 30,       // Individual cell size (reasonable for inner cells)
+  HEX_SIZE: 45,       // Individual cell size (reasonable for inner cells)
   HEX_SPACING: 30,   // Large spacing between cluster centers for 10-cluster layout
   BORDER_THICKNESS: 2,
   HOVER_BORDER_THICKNESS: 3,
@@ -25,7 +25,7 @@ export const VISUAL_CONSTANTS = {
   
   // Text size constants
   CLUSTER_LABEL_FONT_SIZE: 54,  // Size of H1, H2, H3... labels
-  CELL_TEXT_FONT_SIZE: 52,      // Size of text inside individual cells
+  CELL_TEXT_FONT_SIZE: 22,      // Size of text inside individual cells
   
   COLORS: {
     BORDER: '#333',
@@ -151,21 +151,24 @@ const TEN_CLUSTER_SERVICE_AREAS: ServiceAreaType[] = [
 ];
 
 export const DEFAULT_MASTER_TEMPLATE_CONFIG = {
-  version: '1.0.0',
-  description: 'Ten-cluster 2x5 honeycomb template (each cluster supports up to 10 inner cells)',
+  version: '1.4.0', // Final layout from image
+  description: 'Ten-cluster staggered diamond pattern based on the reference image',
   clusters: [
-    // Row 1: H1-H5 at same height (r = 0), spaced horizontally
-    { id: 'H1',  label: 'H1',  centerPosition: { q: -24, r: 0, s: 24 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H2',  label: 'H2',  centerPosition: { q: -12, r: 0, s: 12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H3',  label: 'H3',  centerPosition: { q: 0,   r: 0, s: 0 },  serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H4',  label: 'H4',  centerPosition: { q: 12,  r: 0, s: -12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H5',  label: 'H5',  centerPosition: { q: 24,  r: 0, s: -24 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    // Row 2: H6-H10 at same height (r = 6), offset by half horizontally
-    { id: 'H6',  label: 'H6',  centerPosition: { q: -18, r: 6, s: 12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H7',  label: 'H7',  centerPosition: { q: -6,  r: 6, s: 0 },  serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H8',  label: 'H8',  centerPosition: { q: 6,   r: 6, s: -12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H9',  label: 'H9',  centerPosition: { q: 18,  r: 6, s: -24 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
-    { id: 'H10', label: 'H10', centerPosition: { q: 30,  r: 6, s: -36 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS }
+    // Based on visual analysis of the image, creating a staggered diamond shape.
+    // All 'q' and 'r' values are multiples of 6 for consistent spacing.
+    { id: 'H1',  label: 'H1',  centerPosition: { q: -6, r: -6, s: 12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H2',  label: 'H2',  centerPosition: { q: 0,  r: -12, s: 12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+
+    { id: 'H3',  label: 'H3',  centerPosition: { q: -6, r: 0, s: 6 },   serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H4',  label: 'H4',  centerPosition: { q: 0,  r: -6, s: 6 },   serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H5',  label: 'H5',  centerPosition: { q: 6,  r: -12, s: 6 },  serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+
+    { id: 'H6',  label: 'H6',  centerPosition: { q: 0,  r: 0, s: 0 },    serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H7',  label: 'H7',  centerPosition: { q: 6,  r: -6, s: 0 },   serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+
+    { id: 'H8',  label: 'H8',  centerPosition: { q: 0,  r: 6, s: -6 },   serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H9',  label: 'H9',  centerPosition: { q: 6,  r: 0, s: -6 },   serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H10', label: 'H10', centerPosition: { q: 12, r: -6, s: -6 },  serviceAreas: TEN_CLUSTER_SERVICE_AREAS }
   ]
 } as const;
 
