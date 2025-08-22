@@ -3,23 +3,20 @@ import { FootprintTemplate, EngagementData } from '../../types/domain';
 import { HexCell } from './HexCell';
 import './HoneycombVisualization.css';
 import { HexMath } from '../../utils/hexMath';
+import { VISUAL_CONSTANTS } from '../../utils/constants';
 
 interface HoneycombVisualizationProps {
   footprintTemplate: FootprintTemplate;
   engagementData: EngagementData[];
   onCellClick?: (cellId: string) => void;
   onCellHover?: (cellId: string | null) => void;
-  width?: number;
-  height?: number;
 }
 
 export const HoneycombVisualization: React.FC<HoneycombVisualizationProps> = ({
   footprintTemplate,
   engagementData,
   onCellClick,
-  onCellHover,
-  width = 800,
-  height = 600
+  onCellHover
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredCell, setHoveredCell] = useState<string | null>(null);
@@ -43,29 +40,47 @@ export const HoneycombVisualization: React.FC<HoneycombVisualizationProps> = ({
     });
   }, [footprintTemplate, engagementMap]);
 
-  // Calculate viewBox based on cell positions
+  // Calculate viewBox based on cell positions and cluster outer hexes
   const viewBox = useMemo(() => {
     if (enrichedCells.length === 0) {
-      return `0 0 ${width} ${height}`;
+      return `0 0 1000 800`; // Default fallback
     }
 
-    // Calculate bounds of all hexagons
-    const positions = enrichedCells.map(cell => {
+    // Calculate bounds for inner cells
+    const cellPositions = enrichedCells.map(cell => {
       const x = HexMath.HEX_SPACING * (3/2 * cell.position.q);
       const y = HexMath.HEX_SPACING * (Math.sqrt(3)/2 * cell.position.q + Math.sqrt(3) * cell.position.r);
       return { x, y };
     });
 
-    const minX = Math.min(...positions.map(p => p.x)) - 50;
-    const maxX = Math.max(...positions.map(p => p.x)) + 50;
-    const minY = Math.min(...positions.map(p => p.y)) - 50;
-    const maxY = Math.max(...positions.map(p => p.y)) + 50;
+    // Include outer cluster hexes in bounds
+    const clusterBigSize = HexMath.HEX_SIZE * HexMath.CLUSTER_SCALE;
+    const clusterCenters = footprintTemplate.masterTemplate.honeycombClusters.map(c =>
+      HexMath.axialToPixel(c.centerPosition)
+    );
+
+    const xs = [
+      ...cellPositions.map(p => p.x),
+      ...clusterCenters.map(c => c.x - clusterBigSize),
+      ...clusterCenters.map(c => c.x + clusterBigSize)
+    ];
+    const ys = [
+      ...cellPositions.map(p => p.y),
+      ...clusterCenters.map(c => c.y - clusterBigSize),
+      ...clusterCenters.map(c => c.y + clusterBigSize)
+    ];
+
+    const pad = Math.max(40, HexMath.HEX_SIZE * 1.5);
+    const minX = Math.min(...xs) - pad;
+    const maxX = Math.max(...xs) + pad;
+    const minY = Math.min(...ys) - pad;
+    const maxY = Math.max(...ys) + pad;
 
     const viewWidth = maxX - minX;
     const viewHeight = maxY - minY;
 
     return `${minX} ${minY} ${viewWidth} ${viewHeight}`;
-  }, [enrichedCells, width, height]);
+  }, [enrichedCells, footprintTemplate]);
 
   const handleCellClick = (cellId: string) => {
     onCellClick?.(cellId);
@@ -82,8 +97,7 @@ export const HoneycombVisualization: React.FC<HoneycombVisualizationProps> = ({
         ref={svgRef}
         viewBox={viewBox}
         className="honeycomb-visualization"
-        width={width}
-        height={height}
+        style={{ width: '100%', height: '100%' }}
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
@@ -94,6 +108,31 @@ export const HoneycombVisualization: React.FC<HoneycombVisualizationProps> = ({
             <feDropShadow dx="3" dy="3" stdDeviation="5" floodOpacity="0.4" />
           </filter>
         </defs>
+        
+        {/* Render outer cluster hexes with labels */}
+        {footprintTemplate.masterTemplate.honeycombClusters.map(cluster => {
+          const center = HexMath.axialToPixel(cluster.centerPosition);
+          const bigSize = HexMath.HEX_SIZE * HexMath.CLUSTER_SCALE; // Use scale factor
+          const d = HexMath.generateHexPath(center, bigSize);
+          return (
+            <g key={`cluster-${cluster.id}`}>
+              <path d={d} fill="#f8f9fa" stroke="#adb5bd" strokeWidth={3} opacity={0.7} />
+              {cluster.label && (
+                <text
+                  x={center.x}
+                  y={center.y - bigSize + 30} // Position label at top of cluster
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize={VISUAL_CONSTANTS.CLUSTER_LABEL_FONT_SIZE}
+                  fontWeight="bold"
+                  fill="#495057"
+                >
+                  {cluster.label}
+                </text>
+              )}
+            </g>
+          );
+        })}
         
         {enrichedCells.map(cell => (
           <HexCell

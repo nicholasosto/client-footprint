@@ -1,0 +1,11 @@
+SERVICE_AREA_ID,SERVICE_AREA_NAME,CATEGORY,DESCRIPTION,ICON,COLOR_HEX,PRIORITY,IS_ACTIVE
+SA_SMALL_MOLECULE_RESEARCH,Small Molecule Research,Laboratory Systems,Research and development of small molecule compounds,molecule,#FF6B6B,1,TRUE
+SA_LARGE_MOLECULE_RESEARCH,Large Molecule Research,Laboratory Systems,Biologics and protein research programs,dna,#4ECDC4,1,TRUE
+SA_CLINICAL_TRIALS,Clinical Trials,Clinical Systems,Clinical study design and execution,clipboard-check,#45B7D1,2,TRUE
+SA_REGULATORY_AFFAIRS,Regulatory Affairs,Compliance,FDA and global regulatory submissions,shield-check,#96CEB4,2,TRUE
+SA_QA_QC_COMPLIANCE,QA/QC Compliance,Quality Systems,Quality assurance and control processes,award,#FFEAA7,3,TRUE
+SA_MANUFACTURING,Manufacturing,Operations,Drug manufacturing and production,factory,#DDA0DD,2,TRUE
+SA_SUPPLY_CHAIN,Supply Chain,Operations,Supply chain and logistics management,truck,#98D8C8,3,TRUE
+SA_PHARMACOVIGILANCE,Pharmacovigilance,Safety,Drug safety monitoring and reporting,eye,#FFB6C1,2,TRUE
+SA_MARKET_ACCESS,Market Access,Commercial,Pricing and market access strategies,trending-up,#87CEEB,3,TRUE
+SA_DIGITAL_HEALTH,Digital Health,Innovation,Digital therapeutics and health tech,smartphone,#F0E68C,4,TRUE

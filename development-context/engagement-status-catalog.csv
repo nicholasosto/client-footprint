@@ -1,0 +1,9 @@
+ENGAGEMENT_STATUS_ID,STATUS_NAME,DESCRIPTION,COLOR_HEX,PRIORITY,NEXT_ACTIONS,IS_ACTIVE
+NOT_ENGAGED,Not Engaged,No current engagement or planned activity,#E5E5E5,0,"Identify opportunities; conduct discovery",TRUE
+DISCOVERY,Discovery Phase,Initial assessment and opportunity identification,#FFF3CD,1,"Complete needs assessment; prepare proposal",TRUE
+ACTIVELY_PURSUING,Actively Pursuing,Pursuing engagement opportunities with active proposals,#F5A623,2,"Follow up on proposals; schedule demos",TRUE
+PROPOSAL_SUBMITTED,Proposal Submitted,Formal proposal submitted and under review,#D4EDDA,3,"Track proposal status; prepare for negotiations",TRUE
+CURRENTLY_ENGAGED,Currently Engaged,Active engagement with ongoing work,#4A90E2,4,"Execute project plan; regular status updates",TRUE
+PROJECT_COMPLETE,Project Complete,Engagement successfully completed,#6F42C1,5,"Conduct retrospective; identify expansion opportunities",TRUE
+ON_HOLD,On Hold,Engagement temporarily paused,#F8D7DA,2,"Monitor for restart triggers; maintain relationship",TRUE
+CANCELLED,Cancelled,Engagement cancelled or terminated,#6C757D,0,"Document lessons learned; archive project data",FALSE

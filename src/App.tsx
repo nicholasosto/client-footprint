@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { ClientFootprintPage } from './pages/ClientFootprintPage';
 import { AdminPanel } from './pages/AdminPanel';
-import { ThemeProvider, createTheme, CssBaseline, AppBar, Toolbar, Typography, Container, Box, Button, Stack } from '@mui/material';
+import { ThemeProvider, createTheme, CssBaseline, AppBar, Toolbar, Typography, Container, Box, Button, Stack, Divider } from '@mui/material';
+import { EngagementLegend } from './components/common/EngagementLegend';
 import './App.css';
 
 const App: React.FC = () => {
@@ -36,15 +37,19 @@ const App: React.FC = () => {
               </Stack>
             </Toolbar>
           </AppBar>
-          <Container maxWidth="lg" sx={{ py: 3 }}>
+          <Container maxWidth="xl" sx={{ py: 3 }}>
             <Routes>
               <Route path="/client/:clientId" element={<ClientFootprintPage />} />
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/" element={<Navigate to="/client/regeneron" replace />} />
             </Routes>
           </Container>
-          <Box component="footer" sx={{ py: 2, textAlign: 'center', color: 'text.secondary' }}>
-            <Typography variant="caption">© {new Date().getFullYear()} Pharma Viz</Typography>
+          <Box component="footer" sx={{ pt: 2, pb: 4 }}>
+            <Divider sx={{ mb: 2 }} />
+            <EngagementLegend />
+            <Typography variant="caption" display="block" align="center" color="text.secondary">
+              © {new Date().getFullYear()} Pharma Viz
+            </Typography>
           </Box>
         </Router>
       </ThemeProvider>

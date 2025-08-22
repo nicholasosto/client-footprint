@@ -1,0 +1,16 @@
+SERVICE_TYPE_ID,SERVICE_TYPE_NAME,ABBREVIATION,CATEGORY,DESCRIPTION,TYPICAL_DURATION_MONTHS,COMPLEXITY_LEVEL,IS_ACTIVE
+ST_ELN,Electronic Lab Notebook,ELN,Data Management,Digital laboratory data capture and management,6,MEDIUM,TRUE
+ST_LIMS,Laboratory Information Management System,LIMS,Data Management,Sample and workflow management for labs,12,HIGH,TRUE
+ST_BI,Business Intelligence,BI,Analytics,Data analytics and reporting solutions,9,MEDIUM,TRUE
+ST_SDMS,Scientific Data Management System,SDMS,Data Management,Scientific data storage and integration,18,HIGH,TRUE
+ST_CDS,Clinical Data Systems,CDS,Clinical,Clinical trial data management platforms,15,HIGH,TRUE
+ST_ODM,Operational Data Store,ODM,Data Management,Real-time operational data integration,12,MEDIUM,TRUE
+ST_CM,Content Management,CM,Content,Document and content management systems,6,LOW,TRUE
+ST_EDC,Electronic Data Capture,EDC,Clinical,Clinical trial data collection systems,12,HIGH,TRUE
+ST_CTMS,Clinical Trial Management System,CTMS,Clinical,Clinical study management and tracking,15,HIGH,TRUE
+ST_REGULATORY_SUBMISSION,Regulatory Submission Platform,RSP,Compliance,Electronic regulatory submission systems,9,MEDIUM,TRUE
+ST_QMS,Quality Management System,QMS,Quality,Quality processes and compliance tracking,12,MEDIUM,TRUE
+ST_MES,Manufacturing Execution System,MES,Operations,Production workflow and batch management,18,HIGH,TRUE
+ST_ERP,Enterprise Resource Planning,ERP,Operations,Integrated business process management,24,HIGH,TRUE
+ST_PHARMACOVIGILANCE,Pharmacovigilance System,PV,Safety,Adverse event tracking and reporting,12,MEDIUM,TRUE
+ST_DATA_LAKE,Data Lake Platform,DLP,Analytics,Centralized data storage and analytics,15,HIGH,TRUE

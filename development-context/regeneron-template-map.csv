@@ -1,0 +1,22 @@
+Client_ID,Honeycomb_ID,Cell_ID,Service_Area_ID,Service_Type_ID,Display_Label,Is_Active,Owner_Team,Priority,Notes,Map_Version,Last_Updated
+regeneron,H1,C1,SA_SMALL_MOLECULE_RESEARCH,ST_ELN,Small Mol ELN,TRUE,Core Lab,1,"Primary research platform",1.0,2024-08-22
+regeneron,H1,C2,SA_SMALL_MOLECULE_RESEARCH,ST_LIMS,Small Mol LIMS,TRUE,Core Lab,1,"Sample management system",1.0,2024-08-22
+regeneron,H1,C3,SA_SMALL_MOLECULE_RESEARCH,ST_BI,Small Mol Analytics,TRUE,Analytics Team,2,"Research data analytics",1.0,2024-08-22
+regeneron,H1,C4,SA_SMALL_MOLECULE_RESEARCH,ST_SDMS,Small Mol Data,TRUE,IT Operations,2,"Scientific data storage",1.0,2024-08-22
+regeneron,H1,C5,SA_SMALL_MOLECULE_RESEARCH,ST_CDS,Small Mol Clinical,FALSE,Clinical Ops,3,"Future clinical integration",1.0,2024-08-22
+regeneron,H2,C1,SA_LARGE_MOLECULE_RESEARCH,ST_ELN,Large Mol ELN,TRUE,Biologics Lab,1,"Biologics research platform",1.0,2024-08-22
+regeneron,H2,C2,SA_LARGE_MOLECULE_RESEARCH,ST_LIMS,Large Mol LIMS,TRUE,Biologics Lab,1,"Protein sample tracking",1.0,2024-08-22
+regeneron,H2,C3,SA_LARGE_MOLECULE_RESEARCH,ST_BI,Large Mol Analytics,TRUE,Analytics Team,2,"Biologics data analysis",1.0,2024-08-22
+regeneron,H3,C1,SA_CLINICAL_TRIALS,ST_EDC,Clinical EDC,TRUE,Clinical Data,1,"Electronic data capture",1.0,2024-08-22
+regeneron,H3,C2,SA_CLINICAL_TRIALS,ST_CTMS,Clinical CTMS,TRUE,Clinical Ops,1,"Trial management system",1.0,2024-08-22
+regeneron,H3,C3,SA_CLINICAL_TRIALS,ST_BI,Clinical Analytics,TRUE,Clinical Analytics,2,"Clinical data reporting",1.0,2024-08-22
+regeneron,H4,C1,SA_REGULATORY_AFFAIRS,ST_REGULATORY_SUBMISSION,Regulatory Platform,TRUE,Regulatory,1,"FDA submission system",1.0,2024-08-22
+regeneron,H4,C2,SA_REGULATORY_AFFAIRS,ST_CM,Regulatory Docs,TRUE,Regulatory,2,"Document management",1.0,2024-08-22
+regeneron,H5,C1,SA_QA_QC_COMPLIANCE,ST_QMS,Quality System,TRUE,Quality Assurance,1,"Quality management platform",1.0,2024-08-22
+regeneron,H5,C2,SA_QA_QC_COMPLIANCE,ST_LIMS,QC LIMS,TRUE,QC Lab,1,"Quality control testing",1.0,2024-08-22
+regeneron,H6,C1,SA_MANUFACTURING,ST_MES,Manufacturing System,TRUE,Manufacturing,1,"Production execution",1.0,2024-08-22
+regeneron,H6,C2,SA_MANUFACTURING,ST_ERP,Manufacturing ERP,TRUE,Manufacturing,2,"Resource planning",1.0,2024-08-22
+regeneron,H7,C1,SA_SUPPLY_CHAIN,ST_ERP,Supply Chain ERP,TRUE,Supply Chain,1,"Logistics management",1.0,2024-08-22
+regeneron,H8,C1,SA_PHARMACOVIGILANCE,ST_PHARMACOVIGILANCE,Safety Platform,TRUE,Safety,1,"Adverse event tracking",1.0,2024-08-22
+regeneron,H9,C1,SA_MARKET_ACCESS,ST_BI,Market Analytics,FALSE,Commercial,3,"Future market analysis",1.0,2024-08-22
+regeneron,H10,C1,SA_DIGITAL_HEALTH,ST_DATA_LAKE,Digital Platform,FALSE,Innovation Lab,4,"Emerging technology",1.0,2024-08-22

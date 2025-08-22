@@ -6,7 +6,8 @@ import { TemplateService } from '../services/templateService';
 import { setTemplate, setCurrentClient, setLoading, setError } from '../store/slices/templateSlice';
 import { RootState } from '../store';
 import { FootprintTemplate, EngagementData } from '../types/domain';
-import { Paper } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
+import { EngagementSummaryTable } from '../components/common/EngagementSummaryTable';
 
 export const ClientFootprintPage: React.FC = () => {
   const { clientId } = useParams<{ clientId: string }>();
@@ -100,16 +101,21 @@ export const ClientFootprintPage: React.FC = () => {
           </div>
         </div>
         
-        <Paper elevation={1} sx={{ p: 2, minHeight: 520 }}>
-          <HoneycombVisualization
-            footprintTemplate={currentTemplate}
-            engagementData={currentEngagementData}
-            onCellClick={handleCellClick}
-            onCellHover={handleCellHover}
-            width={800}
-            height={600}
-          />
-        </Paper>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={5} lg={4}>
+            <EngagementSummaryTable />
+          </Grid>
+          <Grid item xs={12} md={7} lg={8}>
+            <Paper elevation={1} sx={{ p: 2, minHeight: 600, height: '100%' }}>
+              <HoneycombVisualization
+                footprintTemplate={currentTemplate}
+                engagementData={currentEngagementData}
+                onCellClick={handleCellClick}
+                onCellHover={handleCellHover}
+              />
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
 
       {selectedCell && (

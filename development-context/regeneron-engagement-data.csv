@@ -1,0 +1,15 @@
+Client_ID,Service_Area_ID,Service_Type_ID,Engagement_Status_ID,Start_Date,Expected_End_Date,Owner_Name,Owner_Email,Budget_USD,Progress_Percent,Last_Contact_Date,Next_Milestone,Risk_Level,Additional_Notes,Last_Updated
+regeneron,SA_SMALL_MOLECULE_RESEARCH,ST_ELN,CURRENTLY_ENGAGED,2024-01-15,2024-12-31,Sarah Chen,s.chen@regeneron.com,750000,75,2024-08-20,"Phase 2 deployment",LOW,"On track for Q4 completion",2024-08-22
+regeneron,SA_SMALL_MOLECULE_RESEARCH,ST_LIMS,CURRENTLY_ENGAGED,2024-03-01,2025-02-28,Mike Rodriguez,m.rodriguez@regeneron.com,450000,60,2024-08-21,"Integration testing",MEDIUM,"Some integration challenges",2024-08-22
+regeneron,SA_SMALL_MOLECULE_RESEARCH,ST_BI,ACTIVELY_PURSUING,2024-08-01,2024-11-30,Jennifer Park,j.park@regeneron.com,300000,15,2024-08-18,"Proposal review meeting",LOW,"Waiting on stakeholder approval",2024-08-22
+regeneron,SA_LARGE_MOLECULE_RESEARCH,ST_ELN,CURRENTLY_ENGAGED,2024-02-01,2024-10-31,David Kim,d.kim@regeneron.com,600000,80,2024-08-19,"User acceptance testing",LOW,"Ahead of schedule",2024-08-22
+regeneron,SA_LARGE_MOLECULE_RESEARCH,ST_LIMS,PROPOSAL_SUBMITTED,2024-07-15,2024-12-31,Lisa Wang,l.wang@regeneron.com,520000,5,2024-08-17,"Contract negotiations",MEDIUM,"Pending budget approval",2024-08-22
+regeneron,SA_CLINICAL_TRIALS,ST_EDC,CURRENTLY_ENGAGED,2023-09-01,2024-09-30,Tom Anderson,t.anderson@regeneron.com,1200000,90,2024-08-20,"Go-live preparation",LOW,"Final phase of implementation",2024-08-22
+regeneron,SA_CLINICAL_TRIALS,ST_CTMS,PROJECT_COMPLETE,2023-06-01,2024-05-31,Angela Martinez,a.martinez@regeneron.com,800000,100,2024-05-30,"Project closure",LOW,"Successfully completed",2024-08-22
+regeneron,SA_REGULATORY_AFFAIRS,ST_REGULATORY_SUBMISSION,ACTIVELY_PURSUING,2024-06-01,2024-12-31,Robert Johnson,r.johnson@regeneron.com,400000,25,2024-08-16,"Technical requirements review",MEDIUM,"Complex regulatory requirements",2024-08-22
+regeneron,SA_QA_QC_COMPLIANCE,ST_QMS,DISCOVERY,2024-08-01,2024-10-31,Maria Lopez,m.lopez@regeneron.com,350000,10,2024-08-15,"Needs assessment workshop",LOW,"Initial discovery phase",2024-08-22
+regeneron,SA_MANUFACTURING,ST_MES,CURRENTLY_ENGAGED,2024-04-01,2025-03-31,James Wilson,j.wilson@regeneron.com,950000,40,2024-08-21,"Phase 1 pilot deployment",MEDIUM,"Some equipment integration issues",2024-08-22
+regeneron,SA_SUPPLY_CHAIN,ST_ERP,NOT_ENGAGED,,,,,0,0,,"Identify opportunities",LOW,"No current activity",2024-08-22
+regeneron,SA_PHARMACOVIGILANCE,ST_PHARMACOVIGILANCE,ACTIVELY_PURSUING,2024-07-01,2024-12-31,Susan Brown,s.brown@regeneron.com,280000,20,2024-08-19,"Vendor selection",LOW,"Evaluating multiple vendors",2024-08-22
+regeneron,SA_MARKET_ACCESS,ST_BI,NOT_ENGAGED,,,,,0,0,,"Future consideration",LOW,"Not a current priority",2024-08-22
+regeneron,SA_DIGITAL_HEALTH,ST_DATA_LAKE,DISCOVERY,2024-08-10,2024-11-30,Kevin Chen,k.chen@regeneron.com,150000,5,2024-08-20,"Technology assessment",HIGH,"Emerging technology - high uncertainty",2024-08-22

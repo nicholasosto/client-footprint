@@ -1,4 +1,4 @@
-import { ServiceAreaType, EngagementState } from '../types/domain';
+import { ServiceAreaType, EngagementState, CellSlotId } from '../types/domain';
 
 /**
  * Application constants and configuration
@@ -15,13 +15,17 @@ export const APP_CONFIG = {
  * Visual styling constants
  */
 export const VISUAL_CONSTANTS = {
-  HEX_SIZE: 30,
-  HEX_SPACING: 65,
+  HEX_SIZE: 30,       // Individual cell size (reasonable for inner cells)
+  HEX_SPACING: 30,   // Large spacing between cluster centers for 10-cluster layout
   BORDER_THICKNESS: 2,
   HOVER_BORDER_THICKNESS: 3,
   DEFAULT_OPACITY: 1,
   HOVER_OPACITY: 0.8,
   ANIMATION_DURATION: 200,
+  
+  // Text size constants
+  CLUSTER_LABEL_FONT_SIZE: 54,  // Size of H1, H2, H3... labels
+  CELL_TEXT_FONT_SIZE: 52,      // Size of text inside individual cells
   
   COLORS: {
     BORDER: '#333',
@@ -132,34 +136,54 @@ export const ENGAGEMENT_STATE_CONFIG = {
 /**
  * Default master template configuration
  */
+// Ten staggered clusters (H1..H10), arranged 3-4-3 with axial spacing of 6 and staggered by 3
+const TEN_CLUSTER_SERVICE_AREAS: ServiceAreaType[] = [
+  ServiceAreaType.ELN,
+  ServiceAreaType.LIMS,
+  ServiceAreaType.SDMS,
+  ServiceAreaType.CDS,
+  ServiceAreaType.BI,
+  ServiceAreaType.ODM,
+  ServiceAreaType.CM,
+  ServiceAreaType.STRATEGIC_CONSULTING,
+  ServiceAreaType.DIGITAL_TRANSFORMATION,
+  ServiceAreaType.REGULATORY_AFFAIRS
+];
+
 export const DEFAULT_MASTER_TEMPLATE_CONFIG = {
   version: '1.0.0',
-  description: 'Default pharmaceutical services honeycomb template',
+  description: 'Ten-cluster 2x5 honeycomb template (each cluster supports up to 10 inner cells)',
   clusters: [
-    {
-      id: 'core-systems',
-      label: 'Core Systems',
-      centerPosition: { q: 0, r: 0, s: 0 },
-      serviceAreas: [
-        ServiceAreaType.ELN,
-        ServiceAreaType.LIMS,
-        ServiceAreaType.SDMS,
-        ServiceAreaType.CDS,
-        ServiceAreaType.BI,
-        ServiceAreaType.ODM,
-        ServiceAreaType.CM
-      ]
-    },
-    {
-      id: 'consulting-services',
-      label: 'Consulting Services',
-      centerPosition: { q: 3, r: -2, s: -1 },
-      serviceAreas: [
-        ServiceAreaType.STRATEGIC_CONSULTING,
-        ServiceAreaType.DIGITAL_TRANSFORMATION,
-        ServiceAreaType.REGULATORY_AFFAIRS,
-        ServiceAreaType.QUALITY_ASSURANCE
-      ]
-    }
+    // Row 1: H1-H5 at same height (r = 0), spaced horizontally
+    { id: 'H1',  label: 'H1',  centerPosition: { q: -24, r: 0, s: 24 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H2',  label: 'H2',  centerPosition: { q: -12, r: 0, s: 12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H3',  label: 'H3',  centerPosition: { q: 0,   r: 0, s: 0 },  serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H4',  label: 'H4',  centerPosition: { q: 12,  r: 0, s: -12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H5',  label: 'H5',  centerPosition: { q: 24,  r: 0, s: -24 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    // Row 2: H6-H10 at same height (r = 6), offset by half horizontally
+    { id: 'H6',  label: 'H6',  centerPosition: { q: -18, r: 6, s: 12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H7',  label: 'H7',  centerPosition: { q: -6,  r: 6, s: 0 },  serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H8',  label: 'H8',  centerPosition: { q: 6,   r: 6, s: -12 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H9',  label: 'H9',  centerPosition: { q: 18,  r: 6, s: -24 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS },
+    { id: 'H10', label: 'H10', centerPosition: { q: 30,  r: 6, s: -36 }, serviceAreas: TEN_CLUSTER_SERVICE_AREAS }
   ]
 } as const;
+
+/**
+ * Fixed inner slot offsets for cells inside a big cluster hex (10 positions)
+ * Pointy-top axial coordinates relative to cluster center.
+ * Optimized for larger cluster hexes (CLUSTER_SCALE = 6).
+ */
+export const CLUSTER_SLOT_OFFSETS: Array<{ id: CellSlotId; q: number; r: number }> = [
+  { id: 'C1', q: 0, r: 0 },      // center
+  { id: 'C2', q: 3, r: 0 },      // ring expanded east
+  { id: 'C3', q: 2, r: -2 },     // ring north-east
+  { id: 'C4', q: -1, r: -2 },    // ring north-west
+  { id: 'C5', q: -3, r: 0 },     // ring expanded west
+  { id: 'C6', q: -2, r: 2 },     // ring south-west
+  { id: 'C7', q: 1, r: 2 },      // ring south-east
+  // outer ring positions with good spacing
+  { id: 'C8', q: 4, r: -3 },     // far east
+  { id: 'C9', q: 0, r: -3 },     // far north
+  { id: 'C10', q: -3, r: 3 }     // far south-west
+];

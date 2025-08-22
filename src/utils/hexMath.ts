@@ -1,11 +1,13 @@
 import { HexCoordinate } from '../types/domain';
+import { VISUAL_CONSTANTS } from './constants';
 
 /**
  * Mathematical utilities for hexagonal coordinate system and rendering
  */
 export class HexMath {
-  static readonly HEX_SIZE = 30; // Radius of hexagon
-  static readonly HEX_SPACING = 65; // Distance between hex centers
+  static get HEX_SIZE() { return VISUAL_CONSTANTS.HEX_SIZE; }
+  static get HEX_SPACING() { return VISUAL_CONSTANTS.HEX_SPACING; }
+  static readonly CLUSTER_SCALE = 8; // Much larger scale factor for prominent cluster hexes
 
   /**
    * Convert axial coordinates to pixel coordinates
